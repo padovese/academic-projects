@@ -159,6 +159,28 @@
             display: block;
             padding: 10px 15px;
         }
+
+        #textoFooter {
+            color: #777;
+            text-align: center;
+        }
+
+        #tb {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        #tb th,
+        #tb td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        #tb tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
     </style>
 </head>
 
@@ -189,15 +211,20 @@
         })
 
         $(window).on('scroll', function () {
-            if (window.pageYOffset < 300) {
+            if (window.pageYOffset < 450) {
                 $("#menu1").addClass("active");
                 $("#menu2").removeClass("active");
                 $("#menu3").removeClass("active");
                 $("#menu4").removeClass("active");
-            } else if (window.pageYOffset > 300 && window.pageYOffset < 600) {
+            } else if (window.pageYOffset > 450 && window.pageYOffset < 1000) {
                 $("#menu1").removeClass("active");
                 $("#menu2").addClass("active");
                 $("#menu3").removeClass("active");
+                $("#menu4").removeClass("active");
+            } else if (window.pageYOffset > 1000 && window.pageYOffset < 2000) {
+                $("#menu1").removeClass("active");
+                $("#menu2").removeClass("active");
+                $("#menu3").addClass("active");
                 $("#menu4").removeClass("active");
             }
         });
@@ -218,21 +245,13 @@
                         <a href="#base">A Base</a>
                     </li>
                     <li id="menu3">
-                        <a href="#section3">Family</a>
+                        <a href="#dado">Entendendo o dado</a>
                     </li>
                     <li id="menu4">
-                        <a href="#section3">Photos</a>
+                        <a href="#modelo">Modelos preditivos</a>
                     </li>
                 </ul>
                 <br>
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search Blog..">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </span>
-                </div>
             </div>
 
             <div class="col-sm-10">
@@ -240,7 +259,7 @@
                     <small id="introducao">INTRODUÇÃO</small>
                 </h4>
                 <hr>
-                <h2>Mineração de dados em base criminal do estado de Nova York</h2>
+                <h2>Mineração de dados em base criminal da cidade de Nova York</h2>
                 <h5>
                     <span class="glyphicon glyphicon-user"></span> Bruno Padovese, Flavio gabriel &nbsp;&nbsp;&nbsp;
                     <span class="glyphicon glyphicon-time"></span> 22/04/2018</h5>
@@ -248,7 +267,8 @@
                     <br>
                     <p>Este estudo foca em apresentar a base de dados de crimes da pol&iacute;cia de Nova York, expor as possibilidades
                         de explora&ccedil;&atilde;o e minera&ccedil;&atilde;o deste dado e utilizar atrav&eacute;s das linguagens
-                        <span class="label label-primary">R</span> e <span class="label label-success">Python</span> algoritmos &uacute;teis na pr&aacute;tica.
+                        <span class="label label-primary">R</span> e
+                        <span class="label label-success">Python</span> algoritmos &uacute;teis na pr&aacute;tica.
                         <br /> Nossa principal motiva&ccedil;&atilde;o &eacute; a criticidade e a import&acirc;ncia que este dado
                         nos traz e como um bom tratamento pode extrair frutos valiosos que podem al&eacute;m de salvar tempo,
                         dinheiro e recursos diversos, podem salvar a coisa mais importante: vidas.</p>
@@ -271,103 +291,73 @@
                         <li>Rondas policiais mais assertivas.</li>
                         <li>Predi&ccedil;&otilde;es e preven&ccedil;&otilde;es eficazes.</li>
                         <li>Economia em recursos humanos de NYPD.</li>
-                        <li>Economia financeira para o estado de NY.</li>
+                        <li>Economia financeira para a cidade de NY.</li>
                     </ul>
                 </p>
-                <br>
+                <br><br>
                 <h4>
                     <small id="base">A BASE</small>
                 </h4>
                 <hr>
                 <h2>Sobre a NYC Open Data</h2>
-                <h5>
-                    <span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>
-                <h5>
-                    <span class="label label-success">Lorem</span>
-                </h5>
-                <h5>
-                    <span class="label label-danger">Food</span>
-                    <span class="label label-primary">Ipsum</span>
-                </h5>
                 <br>
                 <p>
-                    <table>
-                        <tr>
-                            <td>
-                                <a href="http://opendata.cityofnewyork.us">
-                                    <img src="resource/nyc-opendata.png">
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Clique
-                                <a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Historic/qgea-i56i">aqui</a> para acessar a base de dados disponibilizada pelo departamento de polícia do estado
-                                de Nova York.</td>
-                        </tr>
-                    </table>
+                    <a href="http://opendata.cityofnewyork.us">
+                        <img src="resource/nyc-opendata.png">
+                    </a>
+                    <br>
+                    <td>Clique
+                        <a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Historic/qgea-i56i">aqui</a> para acessar a base de dados disponibilizada pelo departamento de polícia da cidade de Nova
+                        York.
+                        <br>
+                        <br> Dado aberto para todos os moradores de Nova York. Onde você pode encontrar pontos de Wi-Fi púbicos
+                        no seu bairro? Que tipo de árvore são essas na frente do seu escritório? Aprenda sobre o lugar que
+                        você vive, trabalha e curte. Este é o slogan do NYC Open Data, uma iniciativa da cidade de Nova York
+                        onde são disponibilizados dados de diversos tipos, tamanhos e curiosidades. A iniciativa se tornou
+                        tão popular e válida que acabou gerando muitas disputas pelo resultado, veteranos experientes sobre
+                        diversos assuntos e tecnologias como disponibilização de APIs para consumo. Não é necessário dizer
+                        que isso tudo gerou muitos benefícios para a cidade e os moradores de Nova York, né?
                 </p>
-                <hr>
-
-                <h4>Leave a Comment:</h4>
-                <form role="form">
-                    <div class="form-group">
-                        <textarea class="form-control" rows="3" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-success">Submit</button>
-                </form>
                 <br>
-                <br>
+                <h4>Amostra</h4>
 
-                <p>
-                    <span class="badge">2</span> Comments:</p>
-                <br>
+                <script src="https://gist.github.com/padovese/46d1c6b6bbed0dae1a1a3e3a3bc7ced4.js"></script>
 
-                <div class="row">
-                    <div class="col-sm-2 text-center">
-                        <img src="bandmember.jpg" class="img-circle" height="65" width="65" alt="Avatar">
-                    </div>
-                    <div class="col-sm-10">
-                        <h4>Anja
-                            <small>Sep 29, 2015, 9:12 PM</small>
-                        </h4>
-                        <p>Keep up the GREAT work! I am cheering for you!! Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <br>
-                    </div>
-                    <div class="col-sm-2 text-center">
-                        <img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
-                    </div>
-                    <div class="col-sm-10">
-                        <h4>John Row
-                            <small>Sep 25, 2015, 8:25 PM</small>
-                        </h4>
-                        <p>I am so happy for you man! Finally. I am looking forward to read about your trendy life. Lorem ipsum
-                            dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                            magna aliqua.</p>
-                        <br>
-                        <p>
-                            <span class="badge">1</span> Comment:</p>
-                        <br>
-                        <div class="row">
-                            <div class="col-sm-2 text-center">
-                                <img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
-                            </div>
-                            <div class="col-xs-10">
-                                <h4>Nested Bro
-                                    <small>Sep 25, 2015, 8:28 PM</small>
-                                </h4>
-                                <p>Me too! WOW!</p>
-                                <br>
-                            </div>
-                        </div>
-                    </div>
+                <div style="overflow-x:auto;">
+                <table id="tb">
+                        <tr>
+                                <th>CMPLNT_NUM</th><th>CMPLNT_FR_DT</th><th>CMPLNT_FR_TM</th><th>CMPLNT_TO_DT</th><th>CMPLNT_TO_TM</th><th>RPT_DT</th><th>KY_CD</th><th>OFNS_DESC</th><th>PD_CD</th><th>PD_DESC</th><th>CRM_ATPT_CPTD_CD</th><th>LAW_CAT_CD</th><th>JURIS_DESC</th><th>BORO_NM</th><th>ADDR_PCT_CD</th><th>LOC_OF_OCCUR_DESC</th><th>PREM_TYP_DESC</th><th>PARKS_NM</th><th>HADEVELOPT</th><th>X_COORD_CD</th><th>Y_COORD_CD</th><th>Latitude</th><th>Longitude</th><th>Lat_Lon</th>
+                        </tr>
+                        <tr><td>801353533</td><td>8/13/2014</td><td>18:45:00</td><td>#N/D</td><td>#N/D</td><td>8/13/2014</td><td>359</td><td>OFFENSES AGAINST PUBLIC ADMINI</td><td>759</td><td>PUBLIC ADMINISTATION,UNCLASS M</td><td>COMPLETED</td><td>MISDEMEANOR</td><td>N.Y. POLICE DEPT</td><td>QUEENS</td><td>109</td><td>#N/D</td><td>STREET</td><td>#N/D</td><td>#N/D</td><td>1031211</td><td>216309</td><td>40,76027822</td><td>-73,83048545</td><td>(40.760278216, -73.830485448)</td></tr>
+                        <tr><td>802598956</td><td>7/10/2014</td><td>14:55:00</td><td>7/10/2014</td><td>15:04:00</td><td>7/10/2014</td><td>235</td><td>DANGEROUS DRUGS</td><td>567</td><td>MARIJUANA, POSSESSION 4 & 5</td><td>COMPLETED</td><td>MISDEMEANOR</td><td>N.Y. HOUSING POLICE</td><td>MANHATTAN</td><td>23</td><td>OPPOSITE OF</td><td>RESIDENCE - PUBLIC HOUSING</td><td>#N/D</td><td>#N/D</td><td>999584</td><td>230371</td><td>40,79898611</td><td>-73,94461787</td><td>(40.798986105, -73.944617869)</td></tr>
+                        <tr><td>531964428</td><td>3/5/2014</td><td>09:00:00</td><td>3/18/2014</td><td>00:01:00</td><td>3/19/2014</td><td>578</td><td>HARRASSMENT 2</td><td>638</td><td>HARASSMENT,SUBD 3,4,5</td><td>COMPLETED</td><td>VIOLATION</td><td>N.Y. POLICE DEPT</td><td>BROOKLYN</td><td>78</td><td>INSIDE</td><td>RESIDENCE-HOUSE</td><td>#N/D</td><td>#N/D</td><td>989250</td><td>180623</td><td>40,66245193</td><td>-73,98197933</td><td>(40.662451925, -73.981979329)</td></tr>
+                        <tr><td>233493919</td><td>3/6/2014</td><td>11:30:00</td><td>#N/D</td><td>#N/D</td><td>3/6/2014</td><td>109</td><td>GRAND LARCENY</td><td>421</td><td>LARCENY,GRAND FROM VEHICLE/MOTORCYCLE</td><td>COMPLETED</td><td>FELONY</td><td>N.Y. POLICE DEPT</td><td>MANHATTAN</td><td>9</td><td>FRONT OF</td><td>STREET</td><td>#N/D</td><td>#N/D</td><td>988895</td><td>203186</td><td>40,72438234</td><td>-73,98324335</td><td>(40.72438234, -73.983243346)</td></tr>
+                        <tr><td>907483184</td><td>7/15/2015</td><td>06:45:00</td><td>#N/D</td><td>#N/D</td><td>7/15/2015</td><td>344</td><td>ASSAULT 3 & RELATED OFFENSES</td><td>101</td><td>ASSAULT 3</td><td>COMPLETED</td><td>MISDEMEANOR</td><td>N.Y. POLICE DEPT</td><td>BRONX</td><td>44</td><td>INSIDE</td><td>RESIDENCE - APT. HOUSE</td><td>#N/D</td><td>#N/D</td><td>1004017</td><td>242094</td><td>40,83115365</td><td>-73,92857217</td><td>(40.831153652, -73.928572172)</td></tr>
+                        </table>
                 </div>
+                <br><br>
+                <h4>
+                    <small id="dado">ENTENDENDO O DADO</small>
+                </h4>
+                <hr>
+                <h2>Padrões e primeiras abordagens</h2>
+                <br>
+                <p>Histograma, curva normal,m media, mediana, moda, boxplot, summary, descvio padrao, intervalo confianca, correlacao, regressao linear</p>
+                <br><br>
+                <h4>
+                    <small id="modelo">MODELOS PREDITIVOS</small>
+                </h4>
+                <hr>
+                <h2>Algoritmos para a favor da prevenção de crimes</h2>
+                <br>
+                <p>knn, arvore de decisao, k-medias...</p>
+           
             </div>
         </div>
     </div>
 
     <footer class="container-fluid">
-        <p>Footer Text</p>
+        <p id="textoFooter">Desenvolvido por Bruno Padovese</p>
     </footer>
 
 </body>

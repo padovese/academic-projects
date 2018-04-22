@@ -54,6 +54,8 @@ Temporary Items
 
 #Databases
 *.csv
+*.xls
+*.xlsx
 
 # ignore an entire directory
 /doc/
