@@ -190,24 +190,35 @@
             $("#menu2").removeClass("active");
             $("#menu3").removeClass("active");
             $("#menu4").removeClass("active");
+            $("#menu5").removeClass("active");
         })
         $("#menu2").click(function () {
             $("#menu1").removeClass("active");
             $("#menu2").addClass("active");
             $("#menu3").removeClass("active");
             $("#menu4").removeClass("active");
+            $("#menu5").removeClass("active");
         })
         $("#menu3").click(function () {
             $("#menu1").removeClass("active");
             $("#menu2").removeClass("active");
             $("#menu3").addClass("active");
             $("#menu4").removeClass("active");
+            $("#menu5").removeClass("active");
         })
         $("#menu4").click(function () {
             $("#menu1").removeClass("active");
             $("#menu2").removeClass("active");
             $("#menu3").removeClass("active");
             $("#menu4").addClass("active");
+            $("#menu5").removeClass("active");
+        })
+        $("#menu5").click(function () {
+            $("#menu1").removeClass("active");
+            $("#menu2").removeClass("active");
+            $("#menu3").removeClass("active");
+            $("#menu4").removeClass("active");
+            $("#menu5").addClass("active");
         })
 
         $(window).on('scroll', function () {
@@ -216,16 +227,31 @@
                 $("#menu2").removeClass("active");
                 $("#menu3").removeClass("active");
                 $("#menu4").removeClass("active");
-            } else if (window.pageYOffset > 450 && window.pageYOffset < 1000) {
+                $("#menu5").removeClass("active");
+            } else if (window.pageYOffset > 450 && window.pageYOffset < 1300) {
                 $("#menu1").removeClass("active");
                 $("#menu2").addClass("active");
                 $("#menu3").removeClass("active");
                 $("#menu4").removeClass("active");
-            } else if (window.pageYOffset > 1000 && window.pageYOffset < 2000) {
+                $("#menu5").removeClass("active");
+            } else if (window.pageYOffset > 1300 && window.pageYOffset < 3800) {
                 $("#menu1").removeClass("active");
                 $("#menu2").removeClass("active");
                 $("#menu3").addClass("active");
                 $("#menu4").removeClass("active");
+                $("#menu5").removeClass("active");
+            } else if (window.pageYOffset > 3800 && window.pageYOffset < 7900) {
+                $("#menu1").removeClass("active");
+                $("#menu2").removeClass("active");
+                $("#menu3").removeClass("active");
+                $("#menu4").addClass("active");
+                $("#menu5").removeClass("active");
+            } else if (window.pageYOffset > 7900) {
+                $("#menu1").removeClass("active");
+                $("#menu2").removeClass("active");
+                $("#menu3").removeClass("active");
+                $("#menu4").removeClass("active");
+                $("#menu5").addClass("active");
             }
         });
     })</script>
@@ -245,10 +271,16 @@
                         <a href="#base">A Base</a>
                     </li>
                     <li id="menu3">
-                        <a href="#dado">Entendendo o dado</a>
+                        <a href="#dado">Entendendo o Dado</a>
                     </li>
                     <li id="menu4">
-                        <a href="#modelo">Modelos preditivos</a>
+                        <a href="#mapa">O Dado no Mapa</a>
+                    </li>
+                    <li id="menu5">
+                        <a href="#modelo">Modelos Preditivos</a>
+                    </li>
+                    <li id="menu6">
+                        <a href="https://github.com/padovese/academic-projects/blob/master/ny-crimes-prediction/full.R">Arquivo R Completo</a>
                     </li>
                 </ul>
                 <br>
@@ -267,7 +299,8 @@
                     <br>
                     <p>Este estudo foca em apresentar a base de dados de crimes da pol&iacute;cia de Nova York, expor as possibilidades
                         de explora&ccedil;&atilde;o e minera&ccedil;&atilde;o deste dado e utilizar atrav&eacute;s das linguagens
-                        <span class="label label-primary">R</span> e
+                        <span class="label label-primary">R</span>,
+                        <span class="label label-danger">SQL</span> e
                         <span class="label label-success">Python</span> algoritmos &uacute;teis na pr&aacute;tica.
                         <br /> Nossa principal motiva&ccedil;&atilde;o &eacute; a criticidade e a import&acirc;ncia que este dado
                         nos traz e como um bom tratamento pode extrair frutos valiosos que podem al&eacute;m de salvar tempo,
@@ -300,7 +333,8 @@
                 </h4>
                 <hr>
                 <h2>Sobre a NYC Open Data</h2>
-                <br>
+                <span class="label label-primary">R</span>
+                <br><br>
                 <p>
                     <a href="http://opendata.cityofnewyork.us">
                         <img src="resource/nyc-opendata.png">
@@ -341,13 +375,31 @@
                 </h4>
                 <hr>
                 <h2>Padrões e primeiras abordagens</h2>
+                <span class="label label-primary">R</span>
                 <br>
-                <p>Histograma, curva normal,m media, mediana, moda, boxplot, summary, descvio padrao, intervalo confianca, correlacao, regressao linear</p>
+                <p>(A RETIRAR)Histograma, curva normal,m media, mediana, moda, boxplot, summary, descvio padrao, intervalo confianca, correlacao, regressao linear</p>
                 <script src="https://gist.github.com/padovese/b4ce6d7c4efe9669b02a25835a2dc8d5.js"></script>
                 <h4>Incidência de crimes por horário</h4>
                 <img src="resource/Rplot.png"><br><br>
                 <h4>Incidência de crimes por categoria</h4>
-                <img src="resource/Rplot01.png"><br><br>
+                <img src="resource/Rplot01.png">
+                <br><br>
+                <div style="overflow-x:auto;">
+                <table id="tb">
+                <tr><th>Posição</th><th>Descrição</th><th>Quantidade</th></tr>
+                <tr><td>1</td><td>                         PETIT LARCENY</td><td> 1664</td></tr>
+                <tr><td>2</td><td>                         HARRASSMENT 2</td><td> 1210</td></tr>
+                <tr><td>3</td><td>          ASSAULT 3 & RELATED OFFENSES</td><td> 1129</td></tr>
+                <tr><td>4</td><td>        CRIMINAL MISCHIEF & RELATED OF</td><td>  997</td></tr>
+                <tr><td>5</td><td>                         GRAND LARCENY</td><td>  948</td></tr>
+                <tr><td>6</td><td>                       DANGEROUS DRUGS</td><td>  571</td></tr>
+                <tr><td>7</td><td>         OFF. AGNST PUB ORD SENSBLTY &</td><td>  427</td></tr>
+                <tr><td>8</td><td>                        FELONY ASSAULT</td><td>  414</td></tr>
+                <tr><td>9</td><td>                               ROBBERY</td><td>  380</td></tr>
+                <tr><td>10</td><td>                             BURGLARY</td><td>  314</td></tr>
+                </table>
+                </div>
+                <br><br>
                 <h4>Incidência de crimes por bairros</h4>
                 <table>
                     <th><img src="resource/nyc-borough.png"></th>
@@ -355,7 +407,26 @@
                 </table><br><br>
                 <h4>Incidência de status de crimes</h4>
                 <img src="resource/Rplot03.png"><br><br>
-                
+                <br><br>
+                <h4>
+                    <small id="mapa">O DADO NO MAPA</small>
+                </h4>
+                <hr>
+                <h2>Ilustrando geograficamente o dado</h2>
+                <span class="label label-primary">R</span>
+                <span class="label label-danger">SQL</span>
+                <br><br>
+                <script src="https://gist.github.com/padovese/0aeae3c9e1a35bb348b37febc7b8768e.js"></script>
+                <h4>O mapa da cidade de Nova York</h4>
+                <img src="resource/Rplot04.png"><br>
+                <h4>Concentração de crimes no geral</h4>
+                <img src="resource/Rplot05_crimes.png"><br>
+                <h4>Concentração de furtos</h4>
+                <img src="resource/Rplot06_furto.png"><br>
+                <h4>Concentração de assaltos</h4>
+                <img src="resource/Rplot07_assalto.png"><br>
+                <h4>Concentração de fraudes</h4>
+                <img src="resource/Rplot08_fraude.png">
                 <br><br>
                 <h4>
                     <small id="modelo">MODELOS PREDITIVOS</small>
