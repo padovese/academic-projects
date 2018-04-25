@@ -312,10 +312,10 @@
                         <li>Calcular previs&otilde;es com base no hor&aacute;rio, tipo do crime e localiza&ccedil;&atilde;o.</li>
                         <li>Entregar um mapa com os locais prov&aacute;veis de novos crimes.</li>
                     </ol>
-                    <p>Modelos abordados: (REVISAR NO FINAL)</p>
+                    <p>Modelos abordados: </p>
                     <ul>
                         <li>Uso de modelos preditivo supervisionado utilizando modelos de classifica&ccedil;&atilde;o como o
-                            KNN ou algoritmos de arvore de decis&atilde;o.</li>
+                            a regressão linear e kmeans.</li>
                         <li>K-medias para agrupamento dos dados</li>
                     </ul>
                     <p>Resultado esperado:</p>
@@ -377,7 +377,7 @@
                 <h2>Padrões e primeiras abordagens</h2>
                 <span class="label label-primary">R</span>
                 <br>
-                <p>(A RETIRAR)Histograma, curva normal,m media, mediana, moda, boxplot, summary, descvio padrao, intervalo confianca, correlacao, regressao linear</p>
+                <br>
                 <script src="https://gist.github.com/padovese/b4ce6d7c4efe9669b02a25835a2dc8d5.js"></script>
                 <h4>Incidência de crimes por horário</h4>
                 <img src="resource/Rplot.png"><br><br>
@@ -432,10 +432,20 @@
                     <small id="modelo">MODELOS PREDITIVOS</small>
                 </h4>
                 <hr>
-                <h2>Algoritmos para a favor da prevenção de crimes</h2>
-                <br>
-                <p>knn, arvore de decisao, k-medias...</p>
-           
+                <h2>Algoritmos para a prevenção de crimes</h2>
+                <span class="label label-success">Python</span>
+                <br><br>
+                <script src="https://gist.github.com/padovese/e13543946e6c7b8eba79da466b207feb.js"></script>
+                <h4>Crimes por categoria anual</h4>
+                <img src="resource/9.png"><br>
+                <h4>Crimes por categoria mensal</h4>
+                <img src="resource/10.png"><br><br>
+                <p>Conforme a base limpa e preparada no Python, o modelo de regressão linear, kmeans/cluesterização foi utilizado para gerar informação preditiva</p>
+                <script src="https://gist.github.com/padovese/a21d1b00bb9a29fb5a4ee49274622d08.js"></script>
+                <p>Plot modelo preditivo</p>
+                <script src="https://gist.github.com/padovese/118d5e757873871aba7d5bb28cabd717.js"></script>
+                <br><h4>Modelo preditivo com base em crimes de fraudes</h4>
+                <img src="resource/11.png">
             </div>
         </div>
     </div>
