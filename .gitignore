@@ -56,6 +56,8 @@ Temporary Items
 *.csv
 *.xls
 *.xlsx
+!cc-1000.csv
+!qconlondon2016_sample_data.csv
 
 # ignore an entire directory
 /doc/
