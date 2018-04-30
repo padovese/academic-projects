@@ -18,7 +18,9 @@ cctrain = cc[-teste,]
 
 str(cctrain)
 
-#Altera vaiaveis para tipo numerico
+summary(modelo)
+
+#Altera vaiaveis para tipo numerico e aplica função de regressão logística
 ccteste$charge_time = as.numeric(ccteste$charge_time)
 cctrain$charge_time = as.numeric(cctrain$charge_time)
 cctrain$fraudulent = as.numeric(cctrain$fraudulent)
@@ -31,8 +33,25 @@ predict_teste = predict(modelo, newdata=ccteste, type="response")>0.5
 
 str(cctrain)
 
+#MAtriz de confusao
+
 c_matrix=table(ccteste$fraudulent,predict_teste)
 
 print(c_matrix)
 
 cat('Accuracy: ', sum(diag(c_matrix))/sum(c_matrix)*100, ' %')
+
+
+#Explorando o modelo
+exp(coef(modelo))
+
+summary(modelo)
+
+#Curva ROC
+# ROC curve
+pr=prediction(as.numeric(predict_teste),as.numeric(ccteste$fraudulent)) 
+prf=performance(pr, measure="tpr", x.measure="fpr")
+plot(prf ,colorize=TRUE)
+auc=performance(pr, measure="auc")
+auc=auc@y.values[[1]]
+auc 
