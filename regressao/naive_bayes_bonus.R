@@ -1,3 +1,9 @@
+library(ROCR)
+library(e1071)
+
+cc = read.csv("D:/academic-projects/regressao/qconlondon2016_sample_data.csv")
+cc$charge_time=as.numeric(cc$charge_time)
+
 cc$amount = cut(cc$amount,20)
 cc$charge_time=cut(as.numeric(cc$charge_time),20)
 cc$card_use_24h = cut(cc$card_use_24h,20)
