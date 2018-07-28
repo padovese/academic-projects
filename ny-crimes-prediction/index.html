@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Mineração de Dados em base criminal</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+
+        .row.content {
+            height: 1500px
+        }
+
+        /* Set gray background color and 100% height */
+
+        .sidenav {
+            background-color: #f1f1f1;
+            height: 100%;
+        }
+
+        /* Set black background color, white text and some padding */
+
+        footer {
+            background-color: #555;
+            color: white;
+            padding: 15px;
+        }
+
+        /* On small screens, set height to 'auto' for sidenav and grid */
+
+        @media screen and (max-width: 767px) {
+            .sidenav {
+                height: auto;
+                padding: 15px;
+            }
+            .row.content {
+                height: auto;
+            }
+        }
+
+        #menu {
+            position: fixed;
+            /* Fixed Sidebar (stay in place on scroll) */
+        }
+
+        @media (min-width:768px) {
+            .container {
+                width: 503px
+            }
+        }
+
+        @media (min-width:992px) {
+            .container {
+                width: 723px
+            }
+        }
+
+        @media (min-width:1200px) {
+            .container {
+                width: 923px
+            }
+        }
+
+        @media (min-width: 1432px) {
+            .container {
+                width: 1170px
+            }
+        }
+
+        body {
+            padding-top: 70px
+        }
+
+        .navbar-fixed-left,
+        .navbar-fixed-right {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1030
+        }
+
+        @media (min-width: 768px) {
+            .navbar-fixed-left,
+            .navbar-fixed-right {
+                width: 232px;
+                height: 100vh;
+                border-radius: 0
+            }
+            .navbar-fixed-left .container,
+            .navbar-fixed-left .container-fluid,
+            .navbar-fixed-right .container,
+            .navbar-fixed-right .container-fluid {
+                padding-right: 0;
+                padding-left: 0;
+                width: auto
+            }
+            .navbar-fixed-left .navbar-header,
+            .navbar-fixed-right .navbar-header {
+                float: none;
+                padding-left: 15px;
+                padding-right: 15px
+            }
+            .navbar-fixed-left .navbar-collapse,
+            .navbar-fixed-right .navbar-collapse {
+                padding-right: 0;
+                padding-left: 0;
+                max-height: none
+            }
+            .navbar-fixed-left .navbar-collapse .navbar-nav,
+            .navbar-fixed-right .navbar-collapse .navbar-nav {
+                float: none!important
+            }
+            .navbar-fixed-left .navbar-collapse .navbar-nav>li,
+            .navbar-fixed-right .navbar-collapse .navbar-nav>li {
+                width: 100%
+            }
+            .navbar-fixed-left .navbar-collapse .navbar-nav>li.dropdown .dropdown-menu,
+            .navbar-fixed-right .navbar-collapse .navbar-nav>li.dropdown .dropdown-menu {
+                top: 0
+            }
+            .navbar-fixed-left .navbar-collapse .navbar-nav.navbar-right,
+            .navbar-fixed-right .navbar-collapse .navbar-nav.navbar-right {
+                margin-right: 0
+            }
+        }
+
+        @media (min-width:768px) {
+            body {
+                padding-top: 0;
+                margin-left: 232px
+            }
+            .navbar-fixed-left {
+                right: auto!important;
+                left: 0!important;
+                border-width: 0 1px 0 0!important
+            }
+            .navbar-fixed-left .dropdown .dropdown-menu {
+                left: 100%;
+                right: auto;
+                border-radius: 0 3px 3px 0
+            }
+            .navbar-fixed-left .dropdown .dropdown-toggle .caret {
+                border-top: 4px solid transparent;
+                border-left: 4px solid;
+                border-bottom: 4px solid transparent;
+                border-right: none
+            }
+        }
+
+        .semBotao {
+            color: #337ab7;
+            background-color: #f1f1f1;
+            border-radius: 4px;
+            position: relative;
+            display: block;
+            padding: 10px 15px;
+        }
+
+        #textoFooter {
+            color: #777;
+            text-align: center;
+        }
+
+        #tb {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        #tb th,
+        #tb td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        #tb tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+    </style>
+</head>
+
+<script>$(document).ready(function () {
+        $("#menu1").click(function () {
+            $("#menu1").addClass("active");
+            $("#menu2").removeClass("active");
+            $("#menu3").removeClass("active");
+            $("#menu4").removeClass("active");
+            $("#menu5").removeClass("active");
+        })
+        $("#menu2").click(function () {
+            $("#menu1").removeClass("active");
+            $("#menu2").addClass("active");
+            $("#menu3").removeClass("active");
+            $("#menu4").removeClass("active");
+            $("#menu5").removeClass("active");
+        })
+        $("#menu3").click(function () {
+            $("#menu1").removeClass("active");
+            $("#menu2").removeClass("active");
+            $("#menu3").addClass("active");
+            $("#menu4").removeClass("active");
+            $("#menu5").removeClass("active");
+        })
+        $("#menu4").click(function () {
+            $("#menu1").removeClass("active");
+            $("#menu2").removeClass("active");
+            $("#menu3").removeClass("active");
+            $("#menu4").addClass("active");
+            $("#menu5").removeClass("active");
+        })
+        $("#menu5").click(function () {
+            $("#menu1").removeClass("active");
+            $("#menu2").removeClass("active");
+            $("#menu3").removeClass("active");
+            $("#menu4").removeClass("active");
+            $("#menu5").addClass("active");
+        })
+
+        $(window).on('scroll', function () {
+            if (window.pageYOffset < 450) {
+                $("#menu1").addClass("active");
+                $("#menu2").removeClass("active");
+                $("#menu3").removeClass("active");
+                $("#menu4").removeClass("active");
+                $("#menu5").removeClass("active");
+            } else if (window.pageYOffset > 450 && window.pageYOffset < 1300) {
+                $("#menu1").removeClass("active");
+                $("#menu2").addClass("active");
+                $("#menu3").removeClass("active");
+                $("#menu4").removeClass("active");
+                $("#menu5").removeClass("active");
+            } else if (window.pageYOffset > 1300 && window.pageYOffset < 3800) {
+                $("#menu1").removeClass("active");
+                $("#menu2").removeClass("active");
+                $("#menu3").addClass("active");
+                $("#menu4").removeClass("active");
+                $("#menu5").removeClass("active");
+            } else if (window.pageYOffset > 3800 && window.pageYOffset < 7900) {
+                $("#menu1").removeClass("active");
+                $("#menu2").removeClass("active");
+                $("#menu3").removeClass("active");
+                $("#menu4").addClass("active");
+                $("#menu5").removeClass("active");
+            } else if (window.pageYOffset > 7900) {
+                $("#menu1").removeClass("active");
+                $("#menu2").removeClass("active");
+                $("#menu3").removeClass("active");
+                $("#menu4").removeClass("active");
+                $("#menu5").addClass("active");
+            }
+        });
+    })</script>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="col-sm-2 sidenav navbar-fixed-left">
+                <!-- <div class="col-sm-2 sidenav"> -->
+                <h4>Índice</h4>
+                <ul class="nav nav-pills nav-stacked">
+                    <li id="menu1" class="active">
+                        <a href="#introducao">Introdução</a>
+                    </li>
+                    <li id="menu2">
+                        <a href="#base">A Base</a>
+                    </li>
+                    <li id="menu3">
+                        <a href="#dado">Entendendo o Dado</a>
+                    </li>
+                    <li id="menu4">
+                        <a href="#mapa">O Dado no Mapa</a>
+                    </li>
+                    <li id="menu5">
+                        <a href="#modelo">Modelos Preditivos</a>
+                    </li>
+                    <li id="menu6">
+                        <a href="https://github.com/padovese/academic-projects/blob/master/ny-crimes-prediction/full.R">Arquivo R Completo</a>
+                    </li>
+                </ul>
+                <br>
+            </div>
+
+            <div class="col-sm-10">
+                <h4>
+                    <small id="introducao">INTRODUÇÃO</small>
+                </h4>
+                <hr>
+                <h2>Mineração de dados em base criminal da cidade de Nova York</h2>
+                <h5>
+                    <span class="glyphicon glyphicon-user"></span> Bruno Padovese, Flavio gabriel &nbsp;&nbsp;&nbsp;
+                    <span class="glyphicon glyphicon-time"></span> 22/04/2018</h5>
+                <p>
+                    <br>
+                    <p>Este estudo foca em apresentar a base de dados de crimes da pol&iacute;cia de Nova York, expor as possibilidades
+                        de explora&ccedil;&atilde;o e minera&ccedil;&atilde;o deste dado e utilizar atrav&eacute;s das linguagens
+                        <span class="label label-primary">R</span>,
+                        <span class="label label-danger">SQL</span> e
+                        <span class="label label-success">Python</span> algoritmos &uacute;teis na pr&aacute;tica.
+                        <br /> Nossa principal motiva&ccedil;&atilde;o &eacute; a criticidade e a import&acirc;ncia que este dado
+                        nos traz e como um bom tratamento pode extrair frutos valiosos que podem al&eacute;m de salvar tempo,
+                        dinheiro e recursos diversos, podem salvar a coisa mais importante: vidas.</p>
+                    <p>Objetivo faseado:</p>
+                    <ol>
+                        <li>Coletar os dados de todas as ocorr&ecirc;ncias policiais.</li>
+                        <li>Entender o dado e obter informa&ccedil;&otilde;es b&aacute;sicas.</li>
+                        <li>Calcular previs&otilde;es com base no hor&aacute;rio, tipo do crime e localiza&ccedil;&atilde;o.</li>
+                        <li>Entregar um mapa com os locais prov&aacute;veis de novos crimes.</li>
+                    </ol>
+                    <p>Modelos abordados: </p>
+                    <ul>
+                        <li>Uso de modelos preditivo supervisionado utilizando modelos de classifica&ccedil;&atilde;o como o
+                            a regressão linear e kmeans.</li>
+                        <li>K-medias para agrupamento dos dados</li>
+                    </ul>
+                    <p>Resultado esperado:</p>
+                    <ul>
+                        <li>Maior efic&aacute;cia no combate de crimes.</li>
+                        <li>Rondas policiais mais assertivas.</li>
+                        <li>Predi&ccedil;&otilde;es e preven&ccedil;&otilde;es eficazes.</li>
+                        <li>Economia em recursos humanos de NYPD.</li>
+                        <li>Economia financeira para a cidade de NY.</li>
+                    </ul>
+                </p>
+                <br><br>
+                <h4>
+                    <small id="base">A BASE</small>
+                </h4>
+                <hr>
+                <h2>Sobre a NYC Open Data</h2>
+                <span class="label label-primary">R</span>
+                <br><br>
+                <p>
+                    <a href="http://opendata.cityofnewyork.us">
+                        <img src="resource/nyc-opendata.png">
+                    </a>
+                    <br>
+                    <td>Clique
+                        <a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Historic/qgea-i56i">aqui</a> para acessar a base de dados disponibilizada pelo departamento de polícia da cidade de Nova
+                        York.
+                        <br>
+                        <br> Dado aberto para todos os moradores de Nova York. Onde você pode encontrar pontos de Wi-Fi púbicos
+                        no seu bairro? Que tipo de árvore são essas na frente do seu escritório? Aprenda sobre o lugar que
+                        você vive, trabalha e curte. Este é o slogan do NYC Open Data, uma iniciativa da cidade de Nova York
+                        onde são disponibilizados dados de diversos tipos, tamanhos e curiosidades. A iniciativa se tornou
+                        tão popular e válida que acabou gerando muitas disputas pelo resultado, veteranos experientes sobre
+                        diversos assuntos e tecnologias como disponibilização de APIs para consumo. Não é necessário dizer
+                        que isso tudo gerou muitos benefícios para a cidade e os moradores de Nova York, né?
+                </p>
+                <br>
+                <h4>Amostra</h4>
+
+                <script src="https://gist.github.com/padovese/46d1c6b6bbed0dae1a1a3e3a3bc7ced4.js"></script>
+
+                <div style="overflow-x:auto;">
+                <table id="tb">
+                        <tr>
+                                <th>CMPLNT_NUM</th><th>CMPLNT_FR_DT</th><th>CMPLNT_FR_TM</th><th>CMPLNT_TO_DT</th><th>CMPLNT_TO_TM</th><th>RPT_DT</th><th>KY_CD</th><th>OFNS_DESC</th><th>PD_CD</th><th>PD_DESC</th><th>CRM_ATPT_CPTD_CD</th><th>LAW_CAT_CD</th><th>JURIS_DESC</th><th>BORO_NM</th><th>ADDR_PCT_CD</th><th>LOC_OF_OCCUR_DESC</th><th>PREM_TYP_DESC</th><th>PARKS_NM</th><th>HADEVELOPT</th><th>X_COORD_CD</th><th>Y_COORD_CD</th><th>Latitude</th><th>Longitude</th><th>Lat_Lon</th>
+                        </tr>
+                        <tr><td>801353533</td><td>8/13/2014</td><td>18:45:00</td><td>#N/D</td><td>#N/D</td><td>8/13/2014</td><td>359</td><td>OFFENSES AGAINST PUBLIC ADMINI</td><td>759</td><td>PUBLIC ADMINISTATION,UNCLASS M</td><td>COMPLETED</td><td>MISDEMEANOR</td><td>N.Y. POLICE DEPT</td><td>QUEENS</td><td>109</td><td>#N/D</td><td>STREET</td><td>#N/D</td><td>#N/D</td><td>1031211</td><td>216309</td><td>40,76027822</td><td>-73,83048545</td><td>(40.760278216, -73.830485448)</td></tr>
+                        <tr><td>802598956</td><td>7/10/2014</td><td>14:55:00</td><td>7/10/2014</td><td>15:04:00</td><td>7/10/2014</td><td>235</td><td>DANGEROUS DRUGS</td><td>567</td><td>MARIJUANA, POSSESSION 4 & 5</td><td>COMPLETED</td><td>MISDEMEANOR</td><td>N.Y. HOUSING POLICE</td><td>MANHATTAN</td><td>23</td><td>OPPOSITE OF</td><td>RESIDENCE - PUBLIC HOUSING</td><td>#N/D</td><td>#N/D</td><td>999584</td><td>230371</td><td>40,79898611</td><td>-73,94461787</td><td>(40.798986105, -73.944617869)</td></tr>
+                        <tr><td>531964428</td><td>3/5/2014</td><td>09:00:00</td><td>3/18/2014</td><td>00:01:00</td><td>3/19/2014</td><td>578</td><td>HARRASSMENT 2</td><td>638</td><td>HARASSMENT,SUBD 3,4,5</td><td>COMPLETED</td><td>VIOLATION</td><td>N.Y. POLICE DEPT</td><td>BROOKLYN</td><td>78</td><td>INSIDE</td><td>RESIDENCE-HOUSE</td><td>#N/D</td><td>#N/D</td><td>989250</td><td>180623</td><td>40,66245193</td><td>-73,98197933</td><td>(40.662451925, -73.981979329)</td></tr>
+                        <tr><td>233493919</td><td>3/6/2014</td><td>11:30:00</td><td>#N/D</td><td>#N/D</td><td>3/6/2014</td><td>109</td><td>GRAND LARCENY</td><td>421</td><td>LARCENY,GRAND FROM VEHICLE/MOTORCYCLE</td><td>COMPLETED</td><td>FELONY</td><td>N.Y. POLICE DEPT</td><td>MANHATTAN</td><td>9</td><td>FRONT OF</td><td>STREET</td><td>#N/D</td><td>#N/D</td><td>988895</td><td>203186</td><td>40,72438234</td><td>-73,98324335</td><td>(40.72438234, -73.983243346)</td></tr>
+                        <tr><td>907483184</td><td>7/15/2015</td><td>06:45:00</td><td>#N/D</td><td>#N/D</td><td>7/15/2015</td><td>344</td><td>ASSAULT 3 & RELATED OFFENSES</td><td>101</td><td>ASSAULT 3</td><td>COMPLETED</td><td>MISDEMEANOR</td><td>N.Y. POLICE DEPT</td><td>BRONX</td><td>44</td><td>INSIDE</td><td>RESIDENCE - APT. HOUSE</td><td>#N/D</td><td>#N/D</td><td>1004017</td><td>242094</td><td>40,83115365</td><td>-73,92857217</td><td>(40.831153652, -73.928572172)</td></tr>
+                        </table>
+                </div>
+                <br><br>
+                <h4>
+                    <small id="dado">ENTENDENDO O DADO</small>
+                </h4>
+                <hr>
+                <h2>Padrões e primeiras abordagens</h2>
+                <span class="label label-primary">R</span>
+                <br>
+                <br>
+                <script src="https://gist.github.com/padovese/b4ce6d7c4efe9669b02a25835a2dc8d5.js"></script>
+                <h4>Incidência de crimes por horário</h4>
+                <img src="resource/Rplot.png"><br><br>
+                <h4>Incidência de crimes por categoria</h4>
+                <img src="resource/Rplot01.png">
+                <br><br>
+                <div style="overflow-x:auto;">
+                <table id="tb">
+                <tr><th>Posição</th><th>Descrição</th><th>Quantidade</th></tr>
+                <tr><td>1</td><td>                         PETIT LARCENY</td><td> 1664</td></tr>
+                <tr><td>2</td><td>                         HARRASSMENT 2</td><td> 1210</td></tr>
+                <tr><td>3</td><td>          ASSAULT 3 & RELATED OFFENSES</td><td> 1129</td></tr>
+                <tr><td>4</td><td>        CRIMINAL MISCHIEF & RELATED OF</td><td>  997</td></tr>
+                <tr><td>5</td><td>                         GRAND LARCENY</td><td>  948</td></tr>
+                <tr><td>6</td><td>                       DANGEROUS DRUGS</td><td>  571</td></tr>
+                <tr><td>7</td><td>         OFF. AGNST PUB ORD SENSBLTY &</td><td>  427</td></tr>
+                <tr><td>8</td><td>                        FELONY ASSAULT</td><td>  414</td></tr>
+                <tr><td>9</td><td>                               ROBBERY</td><td>  380</td></tr>
+                <tr><td>10</td><td>                             BURGLARY</td><td>  314</td></tr>
+                </table>
+                </div>
+                <br><br>
+                <h4>Incidência de crimes por bairros</h4>
+                <table>
+                    <th><img src="resource/nyc-borough.png"></th>
+                    <th><img src="resource/Rplot02.png"></th>
+                </table><br><br>
+                <h4>Incidência de status de crimes</h4>
+                <img src="resource/Rplot03.png"><br><br>
+                <br><br>
+                <h4>
+                    <small id="mapa">O DADO NO MAPA</small>
+                </h4>
+                <hr>
+                <h2>Ilustrando geograficamente o dado</h2>
+                <span class="label label-primary">R</span>
+                <span class="label label-danger">SQL</span>
+                <br><br>
+                <script src="https://gist.github.com/padovese/0aeae3c9e1a35bb348b37febc7b8768e.js"></script>
+                <h4>O mapa da cidade de Nova York</h4>
+                <img src="resource/Rplot04.png"><br>
+                <h4>Concentração de crimes no geral</h4>
+                <img src="resource/Rplot05_crimes.png"><br>
+                <h4>Concentração de furtos</h4>
+                <img src="resource/Rplot06_furto.png"><br>
+                <h4>Concentração de assaltos</h4>
+                <img src="resource/Rplot07_assalto.png"><br>
+                <h4>Concentração de fraudes</h4>
+                <img src="resource/Rplot08_fraude.png">
+                <br><br>
+                <h4>
+                    <small id="modelo">MODELOS PREDITIVOS</small>
+                </h4>
+                <hr>
+                <h2>Algoritmos para a prevenção de crimes</h2>
+                <span class="label label-success">Python</span>
+                <br><br>
+                <script src="https://gist.github.com/padovese/e13543946e6c7b8eba79da466b207feb.js"></script>
+                <h4>Crimes por categoria anual</h4>
+                <img src="resource/Rplot9.png"><br>
+                <h4>Crimes por categoria mensal</h4>
+                <img src="resource/Rplot10.png"><br><br>
+                <p>Conforme a base limpa e preparada no Python, o modelo de regressão linear, kmeans/cluesterização foi utilizado para gerar informação preditiva</p>
+                <script src="https://gist.github.com/padovese/a21d1b00bb9a29fb5a4ee49274622d08.js"></script>
+                <p>Plot modelo preditivo</p>
+                <script src="https://gist.github.com/padovese/118d5e757873871aba7d5bb28cabd717.js"></script>
+                <br><h4>Modelo preditivo com base em crimes de fraudes</h4>
+                <img src="resource/Rplot11.png">
+            </div>
+        </div>
+    </div>
+
+    <footer class="container-fluid">
+        <p id="textoFooter">Desenvolvido por Bruno Padovese</p>
+    </footer>
+
+</body>
+
+</html>
